@@ -1,8 +1,12 @@
+import time
+from sys import stdout
+
 import settings
 import report
 import rules
 import database
 import webbrowser
+import schedule
 
 
 def alert():
@@ -35,4 +39,9 @@ def job():
 
 
 if __name__ == '__main__':
-    job()
+    schedule.every(90).minutes.do(job)
+    print('Macaco esperando...')
+
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
