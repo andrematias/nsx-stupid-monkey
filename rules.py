@@ -12,7 +12,7 @@ class SendMailTimeException(Exception):
     """
 
 
-class MaxInvoiceQueued(Exception):
+class MaxInvoiceQueuedException(Exception):
     """
     Se a cada execução da query o valor retornado estiver superior á  1500 itens.
     """
@@ -39,7 +39,7 @@ def diff_request_and_send_mail(invoices):
 
 def max_invoices_queued(qtd):
     if qtd > MAX_INVOICE_QUEUED:
-        raise MaxInvoiceQueued('Quantidade de faturas enfileiradas é maior do que %s' % MAX_INVOICE_QUEUED)
+        raise MaxInvoiceQueuedException('Quantidade de faturas enfileiradas é maior do que %s' % MAX_INVOICE_QUEUED)
 
 
 

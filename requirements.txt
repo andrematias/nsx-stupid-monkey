@@ -4,4 +4,3 @@ oauth2client
 openpyxl
 peewee
 pymysql
-pygame

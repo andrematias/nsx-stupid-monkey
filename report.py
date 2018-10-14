@@ -4,6 +4,10 @@ from database import qtd_invoices, last_send_mails, last_invoice
 from openpyxl import Workbook
 
 
+class ReportCreationException(Exception):
+    """ Exceção lançada ao criar a planilha de requisições de envio de faturas"""
+
+
 def make_invoices_report(invoice_report):
     try:
         # Criação dos dados do relatório
@@ -32,8 +36,16 @@ def make_invoices_report(invoice_report):
         return False
 
 
+def main():
+    print("Criando o relatório...")
+    try:
+        if make_invoices_report(settings.INVOICE_REPORT_PATH):
+            print('Relatório criado com sucesso em %s' % settings.INVOICE_REPORT_PATH)
+        else:
+            raise ReportCreationException('Falha ao criar o relatório')
+    except ReportCreationException as report_exc:
+        print(report_exc)
+
+
 if __name__ == '__main__':
-    if make_invoices_report(settings.INVOICE_REPORT_PATH):
-        print('Relatório criado com sucesso em %s' % settings.INVOICE_REPORT_PATH)
-    else:
-        print('Falha ao criar o relatório')
+    _main()
