@@ -1,4 +1,4 @@
-import settings
+﻿import settings
 
 from database import qtd_invoices, last_send_mails, last_invoice
 from openpyxl import Workbook
@@ -48,4 +48,4 @@ def main():
 
 
 if __name__ == '__main__':
-    _main()
+    main()
